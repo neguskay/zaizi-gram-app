@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
+import Logo from './Logo';
+
 //import './App.css';
 //import zaizi.logo from  '.zaizi.logo.ico';
 
 
-function updateTopComponents(){
-    return (
-        <div className="TopArea">
-          <header className="LogoArea">
-            <img src={require('./zaizi.logo.ico')} className="App-logo" alt="logo" />
-            <p>
-              ZaiziGram
-            </p>
-            <a
-              className="App-link"
-              href="https://www.zaizi.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              The gram
-            </a>
-          </header>
-        </div>
-      );
+// function updateTopComponents(){
+//     return (
+        
+//       )
+// }
+
+class NavArea extends Component{
+  render(){
+    return(
+      <div className="navbar-nav-scroll">
+        <ul className="navbar-nav bd-navbar-new flex-row">
+          <li className="nav-item">L1</li>
+          <li className="nav-item">L1</li>
+          <li className="nav-item">L1</li>
+          <li className="nav-item">L1</li>
+        </ul>
+      </div>
+    );
+  }
+
 }
 
 class Top extends Component{
     render(){
-      return(updateTopComponents());
+      return(
+        <div className="navbar span">
+          <Logo/>
+          <NavArea/>
+        </div>
+      );
     }
 }
 

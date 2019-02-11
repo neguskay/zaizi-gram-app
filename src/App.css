@@ -23,6 +23,12 @@
   color: #61dafb;
 }
 
+.TopArea {
+  background-color: red;
+  height: 20px;
+  width: 100ox;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

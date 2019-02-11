@@ -24,8 +24,14 @@ class App extends Component {
       </div>
     );*/
     return(
-      <div className="App">
-        <Top/>
+      <div >
+        <div>
+          <Top/>
+        </div>
+        <hr>
+        </hr>
+ 
+        
       </div>
     );
   }
