@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Route } from 'react-router-dom';
 import SignIn from './components/other/SignIn.js';
+import SignUp from './components/other/SignUp';
 
 
 
@@ -14,6 +15,7 @@ function render(){
             <React.Fragment>
                 <Route exact path="/" component={App}/>
                 <Route path="/signin" component={SignIn}/> 
+                <Route path="/signup" component={SignUp}/>
             </React.Fragment>
                  
         </BrowserRouter>, 

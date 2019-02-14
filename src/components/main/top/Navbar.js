@@ -16,10 +16,10 @@ import React, { Component } from 'react';
                         <a className="nav-link" href="some-link">Home <span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item">
-                        <a className="nav-link" href="some-link">Sign In</a>
+                        <a className="nav-link" href="signin">Sign In</a>
                         </li>
                         <li className="nav-item">
-                        <a className="nav-link " href="some-link">Create An Account</a>
+                        <a className="nav-link " href="signup">Create An Account</a>
                         </li>
                         <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="some-link" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Other</a>
