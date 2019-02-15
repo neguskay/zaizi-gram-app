@@ -15,8 +15,8 @@ class SignUp extends Component{
     }
 
     //Validate form
-    validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
+    validateSignUpForm() {
+        return (this.state.email.length > 0 && this.state.password.length > 0 && this.state.name.length>0) || (this.state.password === this.state.passwordConfirmed);
     }
 
     //Handle event changes
@@ -66,18 +66,15 @@ class SignUp extends Component{
                     <label htmlFor="inputPassword" className="sr-only">Confirm Password</label>
                     <input type="password" id="passwordConfirmed" className="form-control" placeholder="Confirm Password" required
                         onChange={this.handleSignUpChange}  value={this.state.passwordConfirmed}></input>
-                    { 
-                        /* don't need the check box here
-                        //This is how to comment in react tag elements 
+                        <hr></hr>
                         <div className="checkbox mb-3">
                             <label>
-                                <input name="isGoing" type="checkbox"/> Remember Me
+                                <input name="isGoing" type="checkbox"/> Tick To Accept Our Terms
                             </label>
                         </div>
-                        */
-                    }
+                        
                     <hr></hr>
-                    <button className="btn btn-lg btn-primary btn-block" type="submit" onClick={this.handleSignUp}>Create Account</button>
+                    <button className="btn btn-lg btn-primary btn-block" type="submit" onClick={this.handleSignUp} disabled={!this.validateSignUpForm()}>Create Account</button>
                     <p className="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
                 </form>
           </div>    

@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './redux/_store/store.js';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -11,14 +13,18 @@ import SignUp from './components/other/SignUp';
 
 function render(){
     ReactDOM.render(
-        <BrowserRouter>
-            <React.Fragment>
-                <Route exact path="/" component={App}/>
-                <Route path="/signin" component={SignIn}/> 
-                <Route path="/signup" component={SignUp}/>
-            </React.Fragment>
-                 
-        </BrowserRouter>, 
+        
+        <Provider store={store}>
+            <BrowserRouter >
+                <React.Fragment>
+                    <Route exact path="/" component={App}/>
+                    <Route path="/signin" component={SignIn}/> 
+                    <Route path="/signup" component={SignUp}/>
+                </React.Fragment>
+                    
+            </BrowserRouter>
+        </Provider>
+        , 
         document.getElementById('root'));
     
 };
