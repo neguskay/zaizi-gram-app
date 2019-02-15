@@ -1,8 +1,17 @@
 import { SIGN_IN_USER, SIGN_IN_PENDING, SIGN_IN_ERROR } from './Types.js'
 
+const axios = require('axios');
+const testData = {
+    "email": "Kailyn_Daniel@gmail.com",
+    "password": "D8AnmVZMB2dhVam"
+}
+
+
 export function signInUser (email, password) {
     return dispatch =>{
         console.log("In Fecthing... loolza Signing")
+        console.log("EEmaill:",email)
+        console.log("PPasswordd",password)
         dispatch(setSignInPending(true));
         dispatch(setSignInSuccess(false));
         dispatch(setSignInError(null));
@@ -14,7 +23,8 @@ export function signInUser (email, password) {
         //     payload: data
         // })
         // );
-        
+        testSignInFetch(email,password)
+
         callSignInApi(email, password, error => {
             dispatch(setSignInPending(false));
             if (!error) {
@@ -24,7 +34,27 @@ export function signInUser (email, password) {
             }
           });
     }
-}
+};
+
+function testSignInFetch(email, password){
+    console.log("email used:", email)
+    console.log("email used:", password)
+    console.log("InAxios Test")
+    
+    axios.get(`http://localhost:3004/users?email=${email}&password=${password}`)
+        .then(
+        function(response){
+            console.log("Response",response)
+            console.log("Response",response.data)
+            if((response.status) === 200) {
+                console.log("We was here")
+            }
+            
+            //console.log(response.data)
+        }
+    )
+    
+  }
 
 export function setSignInPending(isSignInPending) {
     return {

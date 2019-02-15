@@ -16,14 +16,14 @@ class SignIn extends Component{
         super(props);
     
         this.state = {
-        //   email: "",
-        //   password: ""
+           email: "",
+           password: ""
         };
     }
 
     //Validate form
     validateSignInForm() {
-        return this.props.email.length > 0 && this.props.password.length > 0;
+        return this.state.email.length > 0 && this.state.password.length > 0;
 
         //Check database for password
     }
@@ -59,7 +59,8 @@ class SignIn extends Component{
 
     //Show Render the bloody thing ;-)
     render(){
-        let {email, password} = this.state;
+        let email = this.state.email;
+        let password = this.state.password;
         let {isSignInPending, isSignInSuccess, loginError} = this.props;
 
         console.log("Popropsppsp: ", this.props);
@@ -71,11 +72,14 @@ class SignIn extends Component{
                     <h1 className="h3 mb-3 font-weight-normal">Please Sign In</h1>
                     <hr></hr>
                     <label htmlFor="inputEmail" className="sr-only">Email address</label>
-                    <input type="email" id="email" className="form-control"  onChange={event => this.setState({email: event.target.value}) }  value={email} placeholder="Email address" required autoFocus></input>
+                    <input type="email" id="email" className="form-control" onChange={event => this.setState({email: event.target.value}) }  
+                        value={email} placeholder="Email address" required autoFocus>
+                    </input>
                     <hr></hr>
                     <label htmlFor="inputPassword" className="sr-only">Password</label>
                     <input type="password" id="password" className="form-control" value={password}
-                        placeholder="Password" required onChange={event => this.setState({password: event.target.value}) } ></input>
+                        placeholder="Password" required onChange={event => this.setState({password: event.target.value}) } >
+                    </input>
                     <hr></hr>
                     <div className="checkbox mb-3">
                         <label>

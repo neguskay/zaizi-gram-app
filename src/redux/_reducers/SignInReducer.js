@@ -15,6 +15,7 @@ export function reducer(state = {
   }, action) {
     switch (action.type) {
       case SIGN_IN_PENDING:
+        console.log("AAAACCTION",action)
         return Object.assign({}, state, {
             isSignInPending: action.isSignInPending
         });
