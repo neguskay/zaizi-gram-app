@@ -14,7 +14,7 @@ class LoginPage extends Component{
 
     // Reset the login statse
     this.props.dispatch(userActions.logout());
-    userActions.logout()
+    //userActions.logout()
 
     this.state = {
       email: '',
@@ -36,6 +36,7 @@ class LoginPage extends Component{
   handleLoginChange = event => {
     console.log('in login change')
     console.log(this.state)
+    console.log(event.target, "target")
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }

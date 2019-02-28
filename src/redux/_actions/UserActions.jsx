@@ -1,5 +1,7 @@
 import { userConstants } from '../_constants'
 import { history } from '../../_helpers'
+import { userService } from '../../_services'
+import { alertActions } from '../_actions'
 
 export const userActions = {
   login,
@@ -12,21 +14,25 @@ export const userActions = {
 export function login(email, password) {
   console.log("IN ACTIONS/Login func")
   console.log(email, password)
+  const user = {
+    email,
+    password
+  }
   return dispatch => {
       dispatch(request({ email, password }))
       
 
-      // userService.login(username, password)
-      //     .then(
-      //         user => { 
-      //             dispatch(success(user))
-      //             history.push('/')
-      //         },
-      //         error => {
-      //             dispatch(failure(error))
-      //             dispatch(alertActions.error(error))
-      //         }
-      //     )
+      userService.login(email, password)
+          .then(
+              user => { 
+                  dispatch(success(user))
+                  history.push('/')
+              },
+              error => {
+                  dispatch(failure(error))
+                  dispatch(alertActions.error(error))
+              }
+          )
   }
 
   function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
@@ -46,18 +52,18 @@ export function register(user) {
   return dispatch => {
       dispatch(request(user));
 
-      // userService.register(user)
-      //     .then(
-      //         user => { 
-      //             dispatch(success());
-      //             history.push('/login');
-      //             dispatch(alertActions.success('Registration successful'));
-      //         },
-      //         error => {
-      //             dispatch(failure(error));
-      //             dispatch(alertActions.error(error));
-      //         }
-      //     )
+      userService.register(user)
+          .then(
+              user => { 
+                  dispatch(success());
+                  history.push('/login');
+                  dispatch(alertActions.success('Registration successful'));
+              },
+              error => {
+                  dispatch(failure(error));
+                  dispatch(alertActions.error(error));
+              }
+          )
   }
 
   function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }

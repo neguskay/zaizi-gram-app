@@ -8,12 +8,12 @@ class RegisterPage extends Component{
     super(props)
 
     this.state = {
-      user : {
-        email: "",
+      //user : { 
         name: "",
+        email: "",
         password: "",
-        passwordConfirmed: ""
-      },
+        passwordConfirmed: "",
+      //},
       isSubmitted: false
     }
 
@@ -28,30 +28,42 @@ class RegisterPage extends Component{
 
   //Handle event changes
   handleRegisterFormChange = event => {
-    console.log("In Handle register form change")  
+    console.log("In Handle register form change")
+     
     const { name, value } = event.target;
-      const { user } = this.state
-      this.setState({
-          user: {
-              ...user,
-              [name]: value
-          }
-      })  
+    const { user } = this.state
+    this.setState({
+        //if (this.event.target.name
+        //user: {
+            //...user,
+            [name]: value
+        //}
+    }) 
+    console.log(this.state)  
   }
 
   //Signin in Handler
   handleRegisterFormSubmit = event => {
       event.preventDefault()
       console.log("In Handle register form submit")  
+      console.log(this.state)
     
       this.setState({ 
         isSubmitted: true 
       })
-
-      const { user } = this.state;
+      const user = {
+        email: this.state.email,
+        name: this.state.name,
+        password: this.state.password
+      }
+      //const { user } = this.state;
       const { dispatch } = this.props
-      if (user.email && user.name && user.password) {
-          dispatch(userActions.register(user))
+      //TO-DO: Create a user object and parse it to dispatch to register 
+      if (this.state.email && this.state.name && this.state.password) {
+        console.log(this.state.email,"email")
+        console.log(this.state.name, "name")
+        console.log(this.state.password, 'password')
+        dispatch(userActions.register(user))
       }
   }
 
@@ -60,7 +72,8 @@ class RegisterPage extends Component{
       //console.log("Email: ", this.state.email)
 
     const { registering  } = this.props
-    const { user, isSubmitted } = this.state
+    //const { user, isSubmitted } = this.state
+    //const passwordConfirmed = ""
 
     return(
       <div>
@@ -73,26 +86,26 @@ class RegisterPage extends Component{
                 <h1 className="h3 mb-3 font-weight-normal">Create A New Account</h1>
                 <hr></hr>
                 <label htmlFor="name" className="sr-only">Name</label>
-                <input type="name" id="name" className="form-control" placeholder="Your Full-Name" required autoFocus
-                    onChange={event => this.handleRegisterFormChange}  value={user.email}>
+                <input type="name" id="name" name="name" className="form-control" placeholder="Your Full-Name" required autoFocus
+                    onChange={this.handleRegisterFormChange}  value={this.email}>
                     
                 </input>
                 <hr></hr>
                 <label htmlFor="inputEmail" className="sr-only">Email address</label>
-                <input type="email" id="email" className="form-control" placeholder="your_email@address.com" required autoFocus
-                    onChange={this.handleRegisterFormChange}  value={user.name} >
+                <input type="email" id="email" name="email" className="form-control" placeholder="your_email@address.com" required autoFocus
+                    onChange={this.handleRegisterFormChange}  value={this.name} >
                     
                 </input>
                 <hr></hr>
                 <label htmlFor="inputPassword" className="sr-only">Password</label>
-                <input type="password" id="password" className="form-control" placeholder="Password" required
-                    onChange={this.handleRegisterFormChange}  value={user.password} >
+                <input type="password" id="password" name="password" className="form-control" placeholder="Password" required
+                    onChange={this.handleRegisterFormChange}  value={this.password} >
                     
                 </input>
                 <hr></hr>
-                <label htmlFor="inputPassword" className="sr-only">Confirm Password</label>
-                <input type="password" id="passwordConfirmed" className="form-control" placeholder="Confirm Password" required
-                    onChange={this.handleRegisterFormChange}  value={user.passwordConfirmed}>
+                <label htmlFor="inputConfirmedPassword" className="sr-only">Confirm Password</label>
+                <input type="password" id="passwordConfirmed" name="passwordConfirmed" className="form-control" placeholder="Confirm Password" required
+                    onChange={this.handleRegisterFormChange}  value={this.passwordConfirmed}>
                                  
                 </input>
                     <hr></hr>

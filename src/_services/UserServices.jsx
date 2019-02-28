@@ -10,15 +10,16 @@ export const userService = {
     delete: _delete
 }
 
-function login(email, password) {
+export function login(email, password) {
     console.log('IN User Services: Login func ')
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
     }
-
-    return fetch(`/users/authenticate`, requestOptions)
+    //Mount JSON-Server
+    //Put actual path here
+    return fetch(`/users/`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -28,12 +29,12 @@ function login(email, password) {
         })
 }
 
-function logout() {
+export function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user')
 }
 
-function getAll() {
+export function getAll() {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
@@ -42,7 +43,7 @@ function getAll() {
     return fetch(`/users`, requestOptions).then(handleResponse)
 }
 
-function getById(id) {
+export function getById(id) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
@@ -51,7 +52,7 @@ function getById(id) {
     return fetch(`/users/${id}`, requestOptions).then(handleResponse)
 }
 
-function register(user) {
+export function register(user) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -61,7 +62,7 @@ function register(user) {
     return fetch(`/users/register`, requestOptions).then(handleResponse)
 }
 
-function update(user) {
+export function update(user) {
     const requestOptions = {
         method: 'PUT',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
@@ -72,7 +73,7 @@ function update(user) {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
+export function _delete(id) {
     const requestOptions = {
         method: 'DELETE',
         headers: authHeader()
@@ -81,14 +82,14 @@ function _delete(id) {
     return fetch(`/users/${id}`, requestOptions).then(handleResponse)
 }
 
-function handleResponse(response) {
+export function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text)
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout()
-                location.reload(true)
+                //location.reload(true)
             }
 
             const error = (data && data.message) || response.statusText
