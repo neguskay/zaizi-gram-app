@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import {userActions} from '../../redux/_actions'
+import Navbar from '../../components/NavBar';
 
 class RegisterPage extends Component{
   constructor(props) {
@@ -62,6 +63,10 @@ class RegisterPage extends Component{
     const { user, isSubmitted } = this.state
 
     return(
+      <div>
+          <Navbar/>
+        
+        <hr/>
         <div  className="row justify-content-md-center" >
             <form className="form-signup">
                 <img className="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"></img>
@@ -69,34 +74,26 @@ class RegisterPage extends Component{
                 <hr></hr>
                 <label htmlFor="name" className="sr-only">Name</label>
                 <input type="name" id="name" className="form-control" placeholder="Your Full-Name" required autoFocus
-                    onChange={this.handleRegisterFormChange}  value={user.email}>
-                    {isSubmitted && !user.name &&
-                      <div className="help-block">First Name is required</div>
-                    }
+                    onChange={event => this.handleRegisterFormChange}  value={user.email}>
+                    
                 </input>
                 <hr></hr>
                 <label htmlFor="inputEmail" className="sr-only">Email address</label>
                 <input type="email" id="email" className="form-control" placeholder="your_email@address.com" required autoFocus
                     onChange={this.handleRegisterFormChange}  value={user.name} >
-                    {isSubmitted && !user.email &&
-                        <div className="help-block">Email is required</div>
-                    }
+                    
                 </input>
                 <hr></hr>
                 <label htmlFor="inputPassword" className="sr-only">Password</label>
                 <input type="password" id="password" className="form-control" placeholder="Password" required
                     onChange={this.handleRegisterFormChange}  value={user.password} >
-                    {isSubmitted && !user.password &&
-                        <div className="help-block">Password is required</div>
-                    }
+                    
                 </input>
                 <hr></hr>
                 <label htmlFor="inputPassword" className="sr-only">Confirm Password</label>
                 <input type="password" id="passwordConfirmed" className="form-control" placeholder="Confirm Password" required
                     onChange={this.handleRegisterFormChange}  value={user.passwordConfirmed}>
-                    {isSubmitted && !user.passwordConfirmed &&
-                        <div className="help-block">Password requires Confirmation</div>
-                    }               
+                                 
                 </input>
                     <hr></hr>
                     <div className="checkbox mb-3">
@@ -113,10 +110,14 @@ class RegisterPage extends Component{
                 <p className="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
               </form>
         </div>    
-      
+      </div>
     );
   }
 }
+
+// {isSubmitted && !user.name &&
+//   <div className="help-block">First Name is required</div>
+// }
 
 function mapStateToProps(state) {
   const { users, authentication } = state
@@ -129,4 +130,4 @@ function mapStateToProps(state) {
 
 const connectedRegisterPage = connect(mapStateToProps)(RegisterPage)
 //export { connectedRegisterPage as RegisterPage }
-export { RegisterPage as RegisterPage };
+export { connectedRegisterPage as RegisterPage };

@@ -37,7 +37,8 @@ class App extends Component {
     
         <Router history={history}>
           <React.Fragment>
-            <PrivateRoute exact path="/" component={HomePage} /> 
+            {/* <PrivateRoute exact path="/" component={HomePage} />  */}
+            <Route exact path="/" component={HomePage} />
             <Route path="/home" component={HomePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />

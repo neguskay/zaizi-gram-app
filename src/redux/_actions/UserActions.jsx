@@ -13,7 +13,7 @@ export function login(email, password) {
   console.log("IN ACTIONS/Login func")
   console.log(email, password)
   return dispatch => {
-      dispatch(request({ email }))
+      dispatch(request({ email, password }))
       
 
       // userService.login(username, password)

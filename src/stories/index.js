@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux'
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -6,6 +7,7 @@ import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
 import { LoginPage } from '../pages/login';
+import { store } from '../redux/_store'
 import Navbar from '../components/NavBar';
 import MainMiddle from '../components/MainMiddle';
 
@@ -23,7 +25,9 @@ storiesOf('Button', module)
 
 
 storiesOf('Login', module)
-.add('with text', () => <LoginPage>login</LoginPage>)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('empty form', () => <LoginPage />)
+
 
 storiesOf('Nav', module)
 .add('with text', () => <Navbar>Navbar</Navbar>)
